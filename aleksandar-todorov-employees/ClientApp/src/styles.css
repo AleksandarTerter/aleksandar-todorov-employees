@@ -1,0 +1,31 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 10%;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    /* background: rgb(68, 125, 176);
+    background: linear-gradient(180deg, rgba(68, 125, 176, 0.9976365546218487) 35%, rgba(0, 219, 255, 1) 100%); */
+}
+
+.hidden {
+    display: none;
+}
+
+app-root {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    flex-direction: row;
+}

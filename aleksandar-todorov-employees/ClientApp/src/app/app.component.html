@@ -1,0 +1,47 @@
+<h1>Identify the pair of employees who have worked together on common projects for the longest period of time.</h1>
+<input type="file" class="hidden" (change)="onFileSelected($event)" #fileUpload>
+
+<div class="center">
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Date pattern</mat-label>
+      <input type="text" placeholder="Pick one" aria-label="Date pattern" matInput [formControl]="myControl"
+        [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+    <mat-icon>attach_file</mat-icon>
+  </button>
+  {{fileName || "No file uploaded yet."}}
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="empAID">
+    <th mat-header-cell *matHeaderCellDef> Employee ID #1 </th>
+    <td mat-cell *matCellDef="let element"> {{element.empAID}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="empBID">
+    <th mat-header-cell *matHeaderCellDef> Employee ID #2 </th>
+    <td mat-cell *matCellDef="let element"> {{element.empBID}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="projectID">
+    <th mat-header-cell *matHeaderCellDef> Project ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.projectID}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="daysWorked">
+    <th mat-header-cell *matHeaderCellDef> Days worked </th>
+    <td mat-cell *matCellDef="let element"> {{element.daysWorked}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
